@@ -1,15 +1,28 @@
-// Route table: maps URLs to lazily loaded pages inside the root layout.
+// Route table: public login, then auth-guarded shell with dashboard, generic section list and record pages.
 import { createBrowserRouter } from 'react-router'
-import { RootLayout } from '@/components/layout/root-layout'
+import { RequireAuth } from '@/app/RequireAuth'
+import { AppShell } from '@/components/layout/AppShell'
+import { FullPageSpinner } from '@/components/shared/FullPageSpinner'
 
 export const router = createBrowserRouter([
   {
-    element: <RootLayout />,
+    path: '/login',
+    hydrateFallbackElement: <FullPageSpinner />,
+    lazy: () => import('@/pages/Login').then((m) => ({ Component: m.Login })),
+  },
+  {
+    element: <RequireAuth />,
+    hydrateFallbackElement: <FullPageSpinner />,
     children: [
-      { index: true, lazy: () => import('@/pages/home-page').then((m) => ({ Component: m.HomePage })) },
-      { path: 'todos', lazy: () => import('@/pages/todos-page').then((m) => ({ Component: m.TodosPage })) },
-      { path: 'contact', lazy: () => import('@/pages/contact-page').then((m) => ({ Component: m.ContactPage })) },
-      { path: '*', lazy: () => import('@/pages/not-found-page').then((m) => ({ Component: m.NotFoundPage })) },
+      {
+        element: <AppShell />,
+        children: [
+          { index: true, lazy: () => import('@/pages/Dashboard').then((m) => ({ Component: m.Dashboard })) },
+          { path: ':sectionKey', lazy: () => import('@/pages/SectionPage').then((m) => ({ Component: m.SectionRoute })) },
+          { path: ':sectionKey/:recordId', lazy: () => import('@/pages/RecordPage').then((m) => ({ Component: m.RecordRoute })) },
+          { path: '*', lazy: () => import('@/pages/NotFound').then((m) => ({ Component: m.NotFound })) },
+        ],
+      },
     ],
   },
 ])

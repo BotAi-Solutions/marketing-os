@@ -1,0 +1,9 @@
+// Reads the session and auth actions; must be used under AuthProvider.
+import { useContext } from 'react'
+import { AuthContext } from '@/app/providers/authContext'
+
+export function useAuth() {
+  const ctx = useContext(AuthContext)
+  if (!ctx) throw new Error('useAuth must be used within AuthProvider')
+  return ctx
+}

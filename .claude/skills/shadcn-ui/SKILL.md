@@ -41,7 +41,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 | Different look everywhere | Change tokens in `globals.css` (see design-system skill) |
 | New variant used app-wide | Add it to the component's `cva` `variants` in `src/components/ui/<x>.tsx` |
 | One-off tweak | Pass `className` at the call site |
-| App-specific composite (e.g. `PageHeader`, `ThemeToggle`) | Build it in `src/components/shared/` **from** ui primitives. Don't put it in `ui/` |
+| App-specific composite (e.g. `PageHeader`, `RelationPicker`) | Build it in `src/components/shared/` or `src/components/data/` **from** ui primitives. Don't put it in `ui/` |
 
 ## Rules
 
@@ -51,3 +51,6 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 - Keep accessibility: keep Radix props, `aria-*` and `sr-only` labels. Icon-only buttons need `aria-label`.
 - Forms: use `Input`, `Label`, `Field` etc. from ui. For complex validation, add `npx shadcn add form` (react-hook-form + zod).
 - Lint: `src/components/ui/**` has `react/only-export-components` disabled in `.oxlintrc.json`, because shadcn co-exports `cva` variants.
+- Toasts: call `toast` from `sonner`. The themed `<Toaster>` lives in `components/shared/Toaster.tsx` (we don't use shadcn's sonner wrapper because it depends on next-themes).
+- Popovers/comboboxes inside a Sheet or Dialog: set `modal` on `<Popover>` so scrolling and focus work.
+- Dropdown items that open a dialog: use `<DropdownMenu modal={false}>` to avoid a stuck `pointer-events: none` on the body.

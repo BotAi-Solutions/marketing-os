@@ -29,12 +29,13 @@ The design system lives in **one file**: `src/styles/globals.css`. Every visual 
 ## Rules
 
 - **Never hard-code colors.** Don't use `bg-blue-500`, `#fff`, or `rgb()` in components. If a token is missing, add it (below).
+- **One exception: status colors.** `src/lib/status.ts` → `statusTone(status)` maps every status to a tone (gray, amber, purple, green, orange, muted) with light and dark classes. Badges, board column headers and dashboard bars must use it. To color a new status, add it to that file, never inline.
 - **Always pair surfaces with their foreground**: `bg-primary text-primary-foreground`.
 - **Dark mode is automatic.** Tokens swap under `.dark`, so don't write `dark:` color overrides in feature code.
 - **Radius**: use `rounded-sm|md|lg|xl`. They derive from `--radius`, so change `--radius` to restyle globally.
-- **Typography**: `font-heading` for headings and `font-sans` (Geist) for body. Scale: `text-sm` (meta), `text-base` (body), `text-xl` (section heading), `text-3xl sm:text-4xl` (page title). Add `tracking-tight` on headings.
-- **Spacing**: stick to the Tailwind 4px scale. Use `gap-*` / `space-y-*` between siblings, not margins on children. Page sections use `py-16`, and stacks inside a section use `space-y-4`.
-- **Layout width**: wrap page content in `<Container>` (`src/components/layout/container.tsx`), never ad-hoc `max-w-*`.
+- **Typography**: `font-heading` for headings and `font-sans` (Geist) for body. Scale: `text-xs` (labels, legends), `text-sm` (body in app UI), `text-xl` (sheet title), `text-2xl` (page title via `<PageHeader>`). Add `tracking-tight` on headings and `tabular-nums` on numbers.
+- **Spacing**: stick to the Tailwind 4px scale. Use `gap-*` / `space-y-*` between siblings, not margins on children. Pages use `space-y-6 px-4 py-6 sm:px-6 lg:py-8`, cards inside use `gap-3`–`gap-6`.
+- **Layout**: pages render inside `AppShell` (sidebar on `md+`, top bar + slide-out menu below). Start every page with `<PageHeader>`. Sidebar surfaces use the `sidebar-*` tokens. Every page must fit a 390px-wide viewport without horizontal page scroll; wide tables and boards scroll inside their own container.
 - **Icons**: `lucide-react` only. Size them via the parent (shadcn sets `size-4`).
 
 ## Adding a new token
@@ -42,7 +43,7 @@ The design system lives in **one file**: `src/styles/globals.css`. Every visual 
 1. Add the light value under `:root` and the dark value under `.dark` (both are required).
 2. Map it in `@theme inline`: `--color-<name>: var(--<name>);`.
 3. If it is a surface, add a `<name>-foreground` pair with ≥ 4.5:1 contrast.
-4. Add it to the swatch list in `src/pages/home-page.tsx` so it is visible.
+4. Check it in both themes (user menu → Theme).
 
 ## Re-theming
 
