@@ -18,8 +18,9 @@ export function KpiCards({ rows }: { rows: Record<string, Row[]> }) {
               title={kpi.hint}
               className="block h-full rounded-xl border bg-card p-4 text-card-foreground transition-colors hover:bg-muted/50 focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
             >
-              <p className="text-sm text-muted-foreground">{kpi.label}</p>
-              <p className="mt-1 font-heading text-3xl font-semibold tabular-nums">{value}</p>
+              <p className="text-sm font-medium text-muted-foreground">{kpi.label}</p>
+              <p className="mt-1 font-heading text-3xl font-semibold tracking-tight tabular-nums">{value}</p>
+              <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{kpi.hint}</p>
             </Link>
           </li>
         )

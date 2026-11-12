@@ -29,7 +29,7 @@ export function MetricsSummary({ rows }: { rows: Row[] }) {
     <Card>
       <CardHeader className="flex flex-row items-start justify-between gap-2">
         <div className="space-y-1.5">
-          <CardTitle>Last {METRICS_WINDOW_DAYS} days</CardTitle>
+          <CardTitle className="text-lg">Last {METRICS_WINDOW_DAYS} days</CardTitle>
           <CardDescription>
             {recent.length} Metrics Log {recent.length === 1 ? 'entry' : 'entries'} since {formatDate(since)}
           </CardDescription>
@@ -39,11 +39,11 @@ export function MetricsSummary({ rows }: { rows: Row[] }) {
         </Button>
       </CardHeader>
       <CardContent>
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3">
+        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {stats.map((s) => (
-            <div key={s.label}>
-              <dt className="text-xs text-muted-foreground">{s.label}</dt>
-              <dd className="font-heading text-xl font-semibold tabular-nums">{s.value}</dd>
+            <div key={s.label} className="space-y-1 rounded-lg bg-muted/50 p-3">
+              <dt className="text-sm text-muted-foreground">{s.label}</dt>
+              <dd className="font-heading text-2xl font-semibold tracking-tight tabular-nums">{s.value}</dd>
             </div>
           ))}
         </dl>

@@ -44,8 +44,8 @@ type ToneClasses = { badge: string; dot: string; bar: string }
 const TONE_CLASSES: Record<StatusTone, ToneClasses> = {
   gray: {
     badge: 'border-zinc-200 bg-zinc-100 text-zinc-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
-    dot: 'bg-zinc-400 dark:bg-zinc-500',
-    bar: 'bg-zinc-400 dark:bg-zinc-500',
+    dot: 'bg-zinc-400',
+    bar: 'bg-zinc-400',
   },
   amber: {
     badge: 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/15 dark:text-amber-300',
@@ -72,13 +72,16 @@ const TONE_CLASSES: Record<StatusTone, ToneClasses> = {
   },
   muted: {
     badge: 'border-border bg-muted text-muted-foreground',
-    dot: 'bg-muted-foreground/40',
-    bar: 'bg-muted-foreground/25',
+    dot: 'bg-muted-foreground/50',
+    bar: 'bg-muted-foreground/40',
   },
 }
 
 // Strips pipeline numbering ("3 Contact matched" → "contact matched") before matching.
 const normalize = (status: string) => status.replace(/^\d+\s+/, '').trim().toLowerCase()
+
+// Display label without pipeline numbering, so legends don't read "1 Discovered 1".
+export const statusLabel = (status: string) => status.replace(/^\d+\s+/, '').trim()
 
 export function statusTone(status: string | null | undefined): ToneClasses & { tone: StatusTone } {
   const tone = status ? (TONE_BY_STATUS[normalize(status)] ?? 'gray') : 'muted'
