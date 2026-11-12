@@ -47,8 +47,8 @@ export function RelationPicker({ id, field, value, onChange }: Props) {
         <ul className="flex flex-wrap gap-1.5" aria-label={`Selected ${field.label}`}>
           {selected.map((itemId) => (
             <li key={itemId}>
-              <Badge variant="secondary" className="h-auto max-w-full justify-start gap-1 py-0.5 pr-0.5 font-normal">
-                <span className="truncate">{titleOf(itemId)}</span>
+              <Badge variant="secondary" className="h-auto max-w-full justify-start gap-1 py-0.5 pr-0.5 font-normal whitespace-normal">
+                <span className="min-w-0 wrap-break-word">{titleOf(itemId)}</span>
                 <Button
                   type="button"
                   variant="ghost"
@@ -92,7 +92,7 @@ export function RelationPicker({ id, field, value, onChange }: Props) {
                     data-checked={selected.includes(item.id)}
                     onSelect={() => toggle(item.id)}
                   >
-                    <span className="truncate">{item.title}</span>
+                    <span className="min-w-0 wrap-break-word">{item.title}</span>
                   </CommandItem>
                 ))}
               </CommandGroup>

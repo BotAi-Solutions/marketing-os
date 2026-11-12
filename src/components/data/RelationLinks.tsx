@@ -11,9 +11,9 @@ export function RelationLinks({ sectionKey, ids }: { sectionKey: string; ids: st
   return (
     <span className="flex flex-wrap gap-1">
       {items.map((item) => (
-        <Badge key={item.id} variant="secondary" asChild className="h-auto max-w-full justify-start py-0.5 font-normal">
-          <Link to={`/${sectionKey}/${item.id}`} title={item.title}>
-            <span className="truncate">{item.title}</span>
+        <Badge key={item.id} variant="secondary" asChild className="h-auto max-w-full justify-start py-0.5 font-normal whitespace-normal">
+          <Link to={`/${sectionKey}/${item.id}`}>
+            <span className="min-w-0 wrap-break-word">{item.title}</span>
           </Link>
         </Badge>
       ))}

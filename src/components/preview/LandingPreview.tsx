@@ -16,7 +16,7 @@ export function LandingPreview({ row }: PreviewProps) {
             <span key={i} className="size-2.5 rounded-full bg-muted-foreground/30" />
           ))}
         </span>
-        <span className="min-w-0 flex-1 truncate rounded-md bg-background px-3 py-1 text-xs text-muted-foreground">
+        <span className="min-w-0 flex-1 rounded-md break-all bg-background px-3 py-1 text-xs text-muted-foreground">
           {url ? shortUrl(url, 60) : 'botai.example/lp/…'}
         </span>
         {variant && <span className="text-xs text-muted-foreground">Variant {variant}</span>}

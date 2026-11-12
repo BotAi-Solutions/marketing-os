@@ -92,10 +92,10 @@ export function DataTable({ section, rows, onOpen }: Props) {
         <TableBody>
           {sorted.map((row) => (
             <TableRow key={row.id} className="cursor-pointer" onClick={() => onOpen(row.id)}>
-              <TableCell className="max-w-80 font-medium">
+              <TableCell className="max-w-80 font-medium whitespace-normal">
                 <button
                   type="button"
-                  className="block max-w-full truncate text-left hover:underline focus-visible:underline focus-visible:outline-none"
+                  className="block max-w-full text-left wrap-break-word hover:underline focus-visible:underline focus-visible:outline-none"
                   onClick={(e) => {
                     e.stopPropagation()
                     onOpen(row.id)

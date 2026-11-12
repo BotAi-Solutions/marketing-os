@@ -166,7 +166,7 @@ function RecordWorkspace({ section, row }: { section: SectionDef; row: Row | nul
             <span className="text-muted-foreground" aria-hidden>
               /
             </span>
-            <span className="truncate font-medium" aria-current="page">
+            <span className="min-w-0 font-medium wrap-break-word" aria-current="page">
               {String(editor.draft.title || (editor.isNew ? `New ${section.singular}` : 'Untitled'))}
             </span>
             {editor.dirty && <span className="ml-1 hidden shrink-0 text-xs text-muted-foreground sm:inline">· Unsaved</span>}

@@ -104,8 +104,8 @@ function UserMenu() {
             <AvatarFallback className="rounded-lg text-xs">{initials(user.name)}</AvatarFallback>
           </Avatar>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-sm font-medium">{user.name}</span>
-            <span className="block truncate text-xs text-sidebar-foreground/60">{user.email}</span>
+            <span className="block text-sm font-medium wrap-break-word">{user.name}</span>
+            <span className="block text-xs break-all text-sidebar-foreground/60">{user.email}</span>
           </span>
           <ChevronsUpDown className="size-4 text-sidebar-foreground/50" aria-hidden />
         </DropdownMenuTrigger>

@@ -56,7 +56,7 @@ export function LinkedInPreview({ row }: PreviewProps) {
         </span>
         <div className="min-w-0 text-sm leading-tight">
           <p className="font-semibold">{author}</p>
-          <p className="truncate text-xs text-muted-foreground">Botai · Software that ships</p>
+          <p className="text-xs text-muted-foreground">Botai · Software that ships</p>
           <p className="mt-0.5 text-xs text-muted-foreground">{when}</p>
         </div>
         {str(row, 'variant') && (

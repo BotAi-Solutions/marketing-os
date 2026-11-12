@@ -40,7 +40,7 @@ export function Backlinks({ backlink, recordId }: { backlink: Backlink; recordId
                   </span>
                 )}
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate">{row.title}</span>
+                  <span className="block wrap-break-word">{row.title}</span>
                   <span className="text-xs text-muted-foreground">{section.singular}</span>
                 </span>
                 {section.statusField && <StatusBadge status={row[section.statusField] as string | null} />}

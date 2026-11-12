@@ -17,8 +17,8 @@ function Chips({ items, max = 2 }: { items: string[]; max?: number }) {
   return (
     <span className="flex min-w-0 flex-wrap items-center gap-1">
       {shown.map((item) => (
-        <Badge key={item} variant="secondary" className="max-w-40 justify-start font-normal" title={item}>
-          <span className="truncate">{item}</span>
+        <Badge key={item} variant="secondary" className="h-auto max-w-40 justify-start font-normal whitespace-normal">
+          <span className="min-w-0 wrap-break-word">{item}</span>
         </Badge>
       ))}
       {extra > 0 && <span className="text-xs text-muted-foreground">+{extra}</span>}
@@ -74,6 +74,6 @@ export function FieldDisplay({ field, value }: { field: FieldDef; value: FieldVa
         </a>
       )
     default:
-      return <span className="line-clamp-1 max-w-64">{String(value)}</span>
+      return <span className="block max-w-64 whitespace-normal wrap-break-word">{String(value)}</span>
   }
 }

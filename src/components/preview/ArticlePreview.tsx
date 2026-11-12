@@ -48,11 +48,11 @@ export function ArticlePreview({ row }: PreviewProps) {
             </span>
           </span>
         </p>
-        <p className="truncate pt-1 text-xs text-muted-foreground">{breadcrumbUrl(url)}</p>
-        <p className="line-clamp-1 text-lg font-medium text-foreground underline-offset-4 hover:underline">
+        <p className="pt-1 text-xs break-all text-muted-foreground">{breadcrumbUrl(url)}</p>
+        <p className="text-lg font-medium wrap-break-word text-foreground underline-offset-4 hover:underline">
           {seoTitle.length > TITLE_LIMIT ? `${seoTitle.slice(0, TITLE_LIMIT - 1)}…` : seoTitle || 'Untitled'}
         </p>
-        <p className="line-clamp-2 text-sm text-muted-foreground">
+        <p className="text-sm wrap-break-word text-muted-foreground">
           {description || <span className="italic">No meta description. Search engines will pick text from the page.</span>}
         </p>
       </section>
