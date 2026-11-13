@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { BrandMark } from '@/components/layout/BrandMark'
 import { Sidebar } from '@/components/layout/Sidebar'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
@@ -17,7 +18,7 @@ export function AppShell() {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-background/90 px-4 backdrop-blur md:hidden">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-background/80 px-4 backdrop-blur-md md:hidden">
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open navigation">
@@ -31,6 +32,7 @@ export function AppShell() {
             </SheetContent>
           </Sheet>
           <BrandMark />
+          <ThemeToggle className="ml-auto" />
         </header>
 
         <main className="min-w-0 flex-1">

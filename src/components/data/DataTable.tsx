@@ -80,9 +80,9 @@ export function DataTable({ section, rows, onOpen }: Props) {
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border">
+    <div className="overflow-hidden rounded-xl border bg-card shadow-xs">
       <Table>
-        <TableHeader className="bg-muted/40">
+        <TableHeader className="bg-muted/50">
           <TableRow className="hover:bg-transparent">
             {header('title', section.titleLabel, true, 'min-w-56')}
             {status && header(status.name, status.label, true)}

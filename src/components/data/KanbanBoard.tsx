@@ -98,7 +98,7 @@ export function KanbanBoard({ section, rows, onOpen, onMove }: Props) {
                   }}
                   onDragEnd={() => setDraggingId(null)}
                   className={cn(
-                    'group relative cursor-grab rounded-lg border bg-card p-3 text-card-foreground shadow-xs transition-opacity active:cursor-grabbing',
+                    'group relative cursor-grab rounded-lg border bg-card p-3 text-card-foreground shadow-xs transition-[opacity,border-color,box-shadow] hover:border-primary/30 hover:shadow-sm active:cursor-grabbing',
                     draggingId === row.id && 'opacity-50',
                   )}
                 >

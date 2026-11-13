@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 import { toast } from 'sonner'
 import { BrandMark } from '@/components/layout/BrandMark'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { SectionIcon } from '@/components/shared/SectionIcon'
 import {
   AlertDialog,
@@ -35,8 +36,9 @@ import type { Theme } from '@/types/theme'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   cn(
-    'flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm text-sidebar-foreground/75 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0',
-    isActive && 'bg-sidebar-accent font-medium text-sidebar-accent-foreground',
+    'relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent/70 hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:opacity-80',
+    isActive &&
+      'bg-sidebar-accent font-medium text-sidebar-accent-foreground before:absolute before:inset-y-1.5 before:-left-3 before:w-1 before:rounded-r-full before:bg-sidebar-primary [&_svg]:text-sidebar-primary [&_svg]:opacity-100',
   )
 
 const initials = (name: string) =>
@@ -50,8 +52,9 @@ const initials = (name: string) =>
 export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
-      <div className="flex h-14 shrink-0 items-center px-4">
+      <div className="flex h-14 shrink-0 items-center justify-between gap-2 pr-2 pl-4">
         <BrandMark />
+        <ThemeToggle />
       </div>
       <nav aria-label="Main" className="flex-1 space-y-5 overflow-y-auto px-3 py-2">
         <NavLink to="/" end className={linkClass} onClick={onNavigate}>
@@ -60,7 +63,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
         </NavLink>
         {SECTION_GROUPS.map((group) => (
           <div key={group} className="space-y-1">
-            <h2 className="px-2.5 text-xs font-medium text-sidebar-foreground/50">{group}</h2>
+            <h2 className="px-2.5 text-xs font-medium tracking-wide text-sidebar-foreground/50 uppercase">{group}</h2>
             <ul className="space-y-0.5">
               {sectionsInGroup(group).map((section) => (
                 <li key={section.key}>
@@ -101,7 +104,7 @@ function UserMenu() {
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger className="flex w-full items-center gap-2.5 rounded-md p-2 text-left hover:bg-sidebar-accent focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:outline-none data-[state=open]:bg-sidebar-accent">
           <Avatar className="size-8 rounded-lg">
-            <AvatarFallback className="rounded-lg text-xs">{initials(user.name)}</AvatarFallback>
+            <AvatarFallback className="rounded-lg bg-sidebar-primary text-xs font-medium text-sidebar-primary-foreground">{initials(user.name)}</AvatarFallback>
           </Avatar>
           <span className="min-w-0 flex-1">
             <span className="block text-sm font-medium wrap-break-word">{user.name}</span>

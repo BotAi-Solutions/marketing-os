@@ -75,7 +75,7 @@ function SectionPage({ section }: { section: SectionDef }) {
       <PageHeader
         title={section.plural}
         description={section.description}
-        icon={<SectionIcon name={section.icon} className="size-5 text-muted-foreground" />}
+        icon={<SectionIcon name={section.icon} />}
         actions={newButton}
       />
 
@@ -89,12 +89,12 @@ function SectionPage({ section }: { section: SectionDef }) {
               onChange={(e) => setSearch(e.target.value)}
               placeholder={`Search ${section.plural}…`}
               aria-label={`Search ${section.plural} by ${section.titleLabel}`}
-              className="pl-8"
+              className="bg-card pl-8"
             />
           </div>
           {status && activeView === 'table' && (
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-44" aria-label={`Filter by ${status.label.toLowerCase()}`}>
+              <SelectTrigger className="w-44 bg-card" aria-label={`Filter by ${status.label.toLowerCase()}`}>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent position="popper">

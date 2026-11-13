@@ -3,6 +3,7 @@ import { LoaderCircle } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router'
 import { BrandMark } from '@/components/layout/BrandMark'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { FullPageSpinner } from '@/components/shared/FullPageSpinner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -38,8 +39,9 @@ export function Login() {
   }
 
   return (
-    <main className="flex min-h-svh items-center justify-center bg-muted/40 px-4">
-      <Card className="w-full max-w-sm">
+    <main className="relative flex min-h-svh items-center justify-center bg-background bg-glow px-4">
+      <ThemeToggle className="absolute top-4 right-4" />
+      <Card className="w-full max-w-sm shadow-xl shadow-primary/5">
         <form onSubmit={handleSubmit} noValidate>
           <CardHeader className="space-y-3">
             <BrandMark />

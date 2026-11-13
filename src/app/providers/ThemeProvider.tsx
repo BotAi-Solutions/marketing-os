@@ -28,9 +28,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const systemDark = useSyncExternalStore(subscribeToSystem, () => window.matchMedia(DARK_QUERY).matches)
   const resolvedTheme = theme === 'system' ? (systemDark ? 'dark' : 'light') : theme
 
-  // Toggles the .dark class that globals.css keys dark tokens off.
+  // Toggles the .dark class that globals.css keys dark tokens off, pausing transitions for one frame so it swaps cleanly.
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', resolvedTheme === 'dark')
+    const root = document.documentElement
+    if (root.classList.contains('dark') === (resolvedTheme === 'dark')) return
+    root.classList.add('theme-switching')
+    root.classList.toggle('dark', resolvedTheme === 'dark')
+    const frame = requestAnimationFrame(() => root.classList.remove('theme-switching'))
+    return () => {
+      cancelAnimationFrame(frame)
+      root.classList.remove('theme-switching')
+    }
   }, [resolvedTheme])
 
   // Updates state and saves the choice for the next visit.

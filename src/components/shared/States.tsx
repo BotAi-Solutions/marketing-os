@@ -6,8 +6,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 export function EmptyState({ icon, title, description, action }: { icon?: ReactNode; title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed px-6 py-16 text-center">
-      {icon && <div className="flex size-11 items-center justify-center rounded-full bg-muted text-muted-foreground">{icon}</div>}
+    <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed bg-card/60 px-6 py-16 text-center">
+      {icon && <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">{icon}</div>}
       <div className="space-y-1">
         <h2 className="font-medium">{title}</h2>
         {description && <p className="max-w-sm text-sm text-muted-foreground">{description}</p>}
@@ -19,7 +19,7 @@ export function EmptyState({ icon, title, description, action }: { icon?: ReactN
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (
-    <div role="alert" className="flex flex-col items-center justify-center gap-3 rounded-xl border border-destructive/30 px-6 py-16 text-center">
+    <div role="alert" className="flex flex-col items-center justify-center gap-3 rounded-xl border border-destructive/30 bg-destructive/5 px-6 py-16 text-center">
       <CircleX className="size-6 text-destructive" aria-hidden />
       <div className="space-y-1">
         <h2 className="font-medium">Something went wrong</h2>
@@ -35,7 +35,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry: () 
 
 export function TableSkeleton({ rows = 6 }: { rows?: number }) {
   return (
-    <div className="space-y-2 rounded-lg border p-3" role="status" aria-label="Loading">
+    <div className="space-y-2 rounded-xl border bg-card p-3" role="status" aria-label="Loading">
       <Skeleton className="h-6 w-full" />
       {Array.from({ length: rows }, (_, i) => (
         <Skeleton key={i} className="h-9 w-full" />
